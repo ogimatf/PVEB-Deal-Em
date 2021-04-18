@@ -3,7 +3,7 @@ class Card {
    constructor(cardString) {
      
     this.suit = cardString.charAt(1);
-    this.value = cardString.charAt(0);
+    this.rank = cardString.charAt(0);
 
    }
  
@@ -11,12 +11,12 @@ class Card {
      return this.suit;
    }
  
-   getValue() {
-     return this.value;
+   getRank() {
+     return this.rank;
    }
  
    toString() {
-     return this.suit + this.value;
+     return this.suit + this.rank;
    }
  }
  
