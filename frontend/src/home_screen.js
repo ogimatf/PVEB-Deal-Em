@@ -6,20 +6,34 @@ export const initHomeScreen = () => {
     screen = document.createElement('div');
     screen.id = 'homeScreen';
 
-    let buttonStart = document.createElement('div');
-    buttonStart.id = 'btnStart';
-    buttonStart.onclick = () => {
+    let buttonIgraj = document.createElement('div');
+    buttonIgraj.id = 'btnIgraj';
+    buttonIgraj.onclick = () => {
         //TODO
     }
 
-    let buttonExit = document.createElement('div');
-    buttonExit.id = 'btnExit';
-    buttonExit.onclick = () => {
+    let buttonUlog = document.createElement('div');
+    buttonUlog.id = 'btnUlog';
+    buttonUlog.onclick = () => {
         //TODO
     }
 
-    screen.appendChild(buttonStart);
-    screen.appendChild(buttonExit);
+    let buttonOpcije = document.createElement('div');
+    buttonOpcije.id = 'btnOpcije';
+    buttonOpcije.onclick = () => {
+        //TODO
+    }
+
+    let buttonTabele = document.createElement('div');
+    buttonTabele.id = 'btnTabele';
+    buttonTabele.onclick = () => {
+        //TODO
+    }
+
+    screen.appendChild(buttonIgraj);
+    screen.appendChild(buttonUlog);
+    screen.appendChild(buttonTabele);
+    screen.appendChild(buttonOpcije);
 
 }
 
