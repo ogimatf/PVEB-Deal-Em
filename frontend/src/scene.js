@@ -1,6 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { postHomeScreen } from './home-screen.js';
-import { deleteHomeScreen } from './home_screen.js';
+import { deleteHomeScreen , postHomeScreen} from './home_screen.js';
 
 export let w = window.innerWidth;
 export let h = window.innerHeight;
@@ -13,9 +12,10 @@ export let isPlayActive = false;
 export const initPixi = () => {
 
   app = new PIXI.Application({
+    resizeTo: window,
     backgroundColor: 0x000000,
   });
-  document.body.appendChild(app.view);
+  //document.body.appendChild(app.view);
 
   scene = new PIXI.Container();
   app.stage.addChild(scene);
@@ -33,13 +33,7 @@ const postPlayingScreen = () => {
   document.body.appendChild(app.view);
 }
 
-export const setSceen = () => {
-  if (!isPlayActive) {
-    deletePlayingScreen
-    postHomeScreen();
-  } else {
-    deleteHomeScreen();
-    postPlayingScreen();
-  }
+export const setScreen = () => {
+  postHomeScreen();
 }
 
