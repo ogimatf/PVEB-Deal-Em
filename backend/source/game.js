@@ -15,6 +15,9 @@
      this.pile = new Pile();
      this.playersHand = { player1: new Hands(), player2: new Hands() };
      this.playersTalon = { player1: 0, player2: 0 };
+     this.turn = 1;
+     this.turnCounter = 1;
+     this.lastTaker = 'player1';
    }
    putOnPileFromDeck() {
      if (this.deckOfCards.size() >= 1) {
@@ -43,7 +46,25 @@
        throw new Error("Deck does not have cards");
      }
    }
-  
+   moveFromHandsToPile(player, card) {
+    let cardRemoved = this.playersHand[player].remove(card);
+
+    if (cardRemoved) {
+      this.pile.add(card);
+      return true;
+    }
+    else {
+      return false
+    }
+   }
+
+   setTurn(num) {
+    this.turn = num;
+   }
+
+   setTurnCounter(value) {
+    this.turnCounter = value;
+   }
  }
  
  module.exports = Game
