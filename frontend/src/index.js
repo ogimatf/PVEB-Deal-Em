@@ -1,8 +1,8 @@
 import { initHomeScreen, postHomeScreen } from "./home_screen";
-import { initPixi, setSceen } from "./scene";
+import { initPixi, setScreen } from "./scene";
 
 initHomeScreen();
 
 initPixi();
 
-setSceen();
+setScreen();
