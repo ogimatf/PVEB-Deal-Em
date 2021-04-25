@@ -70,7 +70,23 @@ socketHandler = (socket) => {
     });
 
     socket.on('turn', (res) => {
-     // TODO
+        const card = new Card(res.card);
+        const cards = res.cards.map(x => new Card(x));
+        const index = gameIndex[socket.id];
+        const game = allGames[index];
+        const num = socket.id == game.playersId.player1 ? 1 : 2;
+        const player = 'player' + num;
+        const opp = socket.id == game.playersId.player1
+            ? game.playersId.player2 : game.playersId.player1;
+        const turn = game.turn;
+        const opponent = 'player' + (num == 1 ? 2 : 1);
+        const turnCount = game.turnCounter;
+
+        // TODO
+
+        game.setTurnCounter(game.turnCounter + 1);
+
+        game.setTurn(turn == 1 ? 2 : 1);
 
     });
 
