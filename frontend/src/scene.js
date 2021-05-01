@@ -1,5 +1,8 @@
 import * as PIXI from 'pixi.js';
+import * as st from './game_state';
 import { deleteHomeScreen , postHomeScreen} from './home_screen.js';
+import { loader } from './load.js';
+import { initDeck, initSprites, playersNames } from './play_screen';
 
 export let w = window.innerWidth;
 export let h = window.innerHeight;
@@ -15,10 +18,16 @@ export const initPixi = () => {
     resizeTo: window,
     backgroundColor: 0x000000,
   });
-  //document.body.appendChild(app.view);
+  //
 
   scene = new PIXI.Container();
   app.stage.addChild(scene);
+
+  loader.onComplete.add(() => {
+    initSprites();
+    playersNames(st.player1Name, st.player2Name);
+    initDeck();
+  })
 }
 
 export const setPlayActive = (mode) => {
@@ -35,5 +44,7 @@ const postPlayingScreen = () => {
 
 export const setScreen = () => {
   postHomeScreen();
+
+  //postPlayingScreen();
 }
 

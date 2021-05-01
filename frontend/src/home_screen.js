@@ -39,18 +39,12 @@ export const initHomeScreen = () => {
 
 export const setNameWindow = () => {
 
-
-
 }
 
 export const postHomeScreen = () => {
-
     document.body.appendChild(screen);
-
 }
 
 export const deleteHomeScreen = () => {
-
     document.body.removeChild(home);
-
 }
