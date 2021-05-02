@@ -1,5 +1,5 @@
-const Card = require('../models/card');
-const Game = require('../models/game');
+const Card = require('./card');
+const Game = require('./game');
 
 let gamesCounter = 0;
 
