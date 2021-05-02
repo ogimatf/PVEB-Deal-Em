@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js';
 import * as st from './game_state';
 import { deleteHomeScreen , postHomeScreen} from './home_screen.js';
+import { deleteLogScreen, postLogScreen} from './log_screen.js';
+import { deleteTableScreen, postTableScreen} from './tabele_screen.js';
 import { loader } from './load.js';
 import { initDeck, initSprites, playersNames } from './play_screen';
 
@@ -45,6 +47,10 @@ const postPlayingScreen = () => {
 export const setScreen = () => {
   //postHomeScreen();
 
-  postPlayingScreen();
+  //postPlayingScreen();
+
+  //postLogScreen();
+
+  postTableScreen();
 }
 

@@ -1,5 +1,4 @@
 let screen = null;
-let nameWindow = null;
 
 export const initHomeScreen = () => {
 
