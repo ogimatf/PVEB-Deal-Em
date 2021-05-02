@@ -5,11 +5,11 @@ export const initTableScreen = () => {
     screen = document.createElement('div');
     screen.id = 'tableScreen';
 
-    let div_gore = document.createElement('div');
-    div_gore.id = 'tableNaslov';
+    let divNaslov = document.createElement('div');
+    divNaslov.id = 'tableNaslov';
 
-    let div_dole = document.createElement('div');
-    div_dole.id = 'tableTelo';
+    let divTelo = document.createElement('div');
+    divTelo.id = 'tableTelo';
 
     let tabelaNedelja = div_gore = document.createElement('div');
     tabelaNedelja.id = 'tabelaNedelja';
@@ -29,8 +29,8 @@ export const initTableScreen = () => {
     let naslovIstorija = div_gore = document.createElement('div');
     naslovIstorija.id = 'naslovIstorija';
 
-    screen.appendChild(div_gore);
-    screen.appendChild(div_dole);
+    screen.appendChild(divNaslov);
+    screen.appendChild(divTelo);
 
     div_dole.appendChild(tabelaNedelja);
     div_dole.appendChild(tabelaMesec);
