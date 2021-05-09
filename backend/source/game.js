@@ -49,7 +49,7 @@ class Game {
    let cardRemoved = this.playersHand[player].remove(card);
 
    if (cardRemoved) {
-     this.pile.add(card);
+     this.putCardOnPile(card, this.pile.cards);
      return true;
    }
    else {
