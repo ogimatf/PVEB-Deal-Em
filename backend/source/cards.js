@@ -25,6 +25,10 @@ class Cards {
     show() {
       return this.cards;
     }
+
+    getCard() {
+      return this.cards.pop();
+    }
   }
   
   module.exports = Cards;
