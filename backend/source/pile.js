@@ -1,12 +1,12 @@
 const Cards = require('./cards');
+const Card = require('./card');
 
 class Pile extends Cards {
 
   constructor() {
     super([]);
-    this.onePointCards = 0;
-    this.twoPointsCards = 0;
   }
+
 
   add(cards) {
     for (let c of cards) {
@@ -14,7 +14,27 @@ class Pile extends Cards {
     }
   }
 
-//    TODO: Proveri da li moze da se baci karta
+  /** 
+   * @param {Card} card - card from hand
+   * @param {Cards} cards - cards from pile
+   */
+  checkIfLegalMove(card, cards) {
+    
+    let rankHand = card.getRank();
+    let suitHand = card.getSuit();
+    let rankPile = cards.getCard().getRank();
+    let suitPile = cards.getCard().getRank();
+    // ako je zandar mozemo ga staviti sigurno
+    if (rank == "j") {
+      return true;
+    }
+    else if (rankHand == rankPile || suitHand == suitPile) { 
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
 }
 
