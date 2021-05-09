@@ -11,30 +11,30 @@ export const initTableScreen = () => {
     let divTelo = document.createElement('div');
     divTelo.id = 'tableTelo';
 
-    let tabelaNedelja = div_gore = document.createElement('div');
+    let tabelaNedelja = document.createElement('div');
     tabelaNedelja.id = 'tabelaNedelja';
 
-    let tabelaMesec = div_gore = document.createElement('div');
+    let tabelaMesec = document.createElement('div');
     tabelaMesec.id = 'tabelaMesec';
 
-    let tabelaIstorija = div_gore = document.createElement('div');
+    let tabelaIstorija = document.createElement('div');
     tabelaIstorija.id = 'tabelaIstorija';
 
-    let naslovNedelja = div_gore = document.createElement('div');
+    let naslovNedelja = document.createElement('div');
     naslovNedelja.id = 'naslovNedelja';
 
-    let naslovMesec = div_gore = document.createElement('div');
+    let naslovMesec =  document.createElement('div');
     naslovMesec.id = 'naslovMesec';
 
-    let naslovIstorija = div_gore = document.createElement('div');
+    let naslovIstorija = document.createElement('div');
     naslovIstorija.id = 'naslovIstorija';
 
     screen.appendChild(divNaslov);
     screen.appendChild(divTelo);
 
-    div_dole.appendChild(tabelaNedelja);
-    div_dole.appendChild(tabelaMesec);
-    div_dole.appendChild(tabelaIstorija);
+    divTelo.appendChild(tabelaNedelja);
+    divTelo.appendChild(tabelaMesec);
+    divTelo.appendChild(tabelaIstorija);
 
     tabelaNedelja.appendChild(naslovNedelja);
     tabelaMesec.appendChild(naslovMesec);
