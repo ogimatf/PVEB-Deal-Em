@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { table } from './load';
+import { cardsSprites, table } from './load';
 import { h, scene, w } from './scene';
 
 export let cardWidth = 0;
@@ -72,7 +72,7 @@ export const initDeck = () => {
   cardHeigth = 1.5 * cardWidth;
 
   for (let i = 0; i < 52; i++) {
-    let card = new PIXI.Sprite(PIXI.Texture.WHITE);
+    let card = new PIXI.Sprite(cardsSprites.fd.texture);
     card.width = cardWidth;
     card.height = cardHeigth;
     card.anchor.set(0.5);

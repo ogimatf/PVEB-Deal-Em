@@ -12,5 +12,13 @@ module.exports = {
     contentBase: './dist',
     compress: true,
     port: 5000
-  }
+  },
+  module: {
+    rules: [
+        {
+            test: /\.(png|svg|jpg|jpeg|gif|json)$/i,
+            type: 'asset/resource',
+        },
+    ],
+}
 }

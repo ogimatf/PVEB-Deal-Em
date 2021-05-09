@@ -47,10 +47,10 @@ const postPlayingScreen = () => {
 export const setScreen = () => {
   //postHomeScreen();
 
-  //postPlayingScreen();
+  postPlayingScreen();
 
   //postLogScreen();
 
-  postTableScreen();
+  //postTableScreen();
 }
 
