@@ -49,18 +49,17 @@ class Game {
    let cardRemoved = this.playersHand[player].remove(card);
 
    if (cardRemoved) {
-     this.pile.add(card);
+     this.putCardOnPile(card, this.pile.cards);
      return true;
    }
    else {
-     return false
+     return false;
    }
   }
 
-  putCardsOnPile = (cards) => {
-    if (this.pile.checkMove(cards)){
-     this.pile.add(cards);
-
+  putCardOnPile = (card, cards) => {
+    if (this.pile.checkIfLegalMove(card, cards)){
+     this.pile.add(card);
      return true;
     } else {
       return false;

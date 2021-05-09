@@ -83,6 +83,21 @@ socketHandler = (socket) => {
         const turnCount = game.turnCounter;
 
         // TODO
+        game.moveCardFromHandsToPile(player, card);
+
+        socket.emit('turnOn', {
+            action: 'myCardToPile',
+            card: res.card,
+            turn: false,
+            turnNum: game.turnCounter
+        });
+
+        socket.to(opp).emit('turnOn', {
+            action: 'oppCardToPile',
+            card: res.card,
+            turn: true,
+            turnNum: game.turnCounter
+        });
 
         game.setTurnCounter(game.turnCounter + 1);
 
