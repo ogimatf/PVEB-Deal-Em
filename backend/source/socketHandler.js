@@ -10,9 +10,6 @@ let accept = {};
 let playersNames = {};
 lobby = '';
 
-let gameDuration = 48;
-
-
 socketHandler = (socket) => {
     console.log('Established connection: ' + socket.id);
 
@@ -21,7 +18,7 @@ socketHandler = (socket) => {
     });
 
     socket.on('gameLobby', (msg) => {
-        
+
         playersNames[socket.id] = msg.name
         if (lobby === '') {
             lobby = socket.id;
@@ -30,7 +27,7 @@ socketHandler = (socket) => {
             const game = new Game(socket.id, lobby);
 
             game.deckOfCards.shuffle();
-            
+
             allGames.push(game);
             gameIndex[lobby] = gamesCounter;
             gameIndex[socket.id] = gamesCounter;
@@ -49,8 +46,8 @@ socketHandler = (socket) => {
 
             gamesCounter += 1;
         }
-        
-       
+
+
     })
 
     socket.on('gameStart', (msg) => {
@@ -126,7 +123,7 @@ socketHandler = (socket) => {
         }
 
         delete playersNames[socket.id];
-        
+
     });
 
 
