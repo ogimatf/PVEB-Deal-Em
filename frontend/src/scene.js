@@ -5,6 +5,7 @@ import { deleteLogScreen, postLogScreen} from './log_screen.js';
 import { deleteTableScreen, postTableScreen} from './tabele_screen.js';
 import { loader } from './load.js';
 import { initDeck, initSprites, playersNames } from './play_screen';
+import { dealCardsAnimation } from './animation';
 
 export let w = window.innerWidth;
 export let h = window.innerHeight;
@@ -29,6 +30,7 @@ export const initPixi = () => {
     initSprites();
     playersNames(st.player1Name, st.player2Name);
     initDeck();
+    dealCardsAnimation();
   })
 }
 

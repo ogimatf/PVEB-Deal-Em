@@ -1,5 +1,5 @@
-export let hand = [];
-export let pile = [];
+export let hand = ['3h','ac','3c','8d','kc','7h', '9h'];
+export let pile = ['jh'];
 export let player1Name = 'Player1';
 export let player2Name = 'Player2';
 

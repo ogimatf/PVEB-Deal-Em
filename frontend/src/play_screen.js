@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js';
+import { moveFromDeckToPlayer } from './actions';
+import { interactivity } from './animation';
 import { cardsSprites, table } from './load';
 import { h, scene, w } from './scene';
 
@@ -11,6 +13,11 @@ export let opponentCont = null;
 export let playerName = null;
 export let opponentName = null;
 export let deckCont = null;
+export let pileCont = null;
+export let deckCards = [];
+export let pileCards = [];
+export let playerCards = [];
+export let opponentCards = [];
 
 export const initSprites = () => {
   background = table;
@@ -27,6 +34,10 @@ export const initSprites = () => {
   opponentCont = new PIXI.Container();
   opponentCont.position.set(w/2, h * 0.05);
   scene.addChild(opponentCont);
+
+  pileCont = new PIXI.Container();
+  pileCont.position.set(w/2, h/2);
+  scene.addChild(pileCont);
 }
 
 export const playersNames = (name1, name2) => {
@@ -77,5 +88,8 @@ export const initDeck = () => {
     card.height = cardHeigth;
     card.anchor.set(0.5);
     deckCont.addChild(card);
+    deckCards.push(card);
+
+    interactivity(card, moveFromDeckToPlayer);
   }
 }
