@@ -165,3 +165,27 @@ body{
     background-position: center;
     background-size: contain;
 }
+
+#btnLogBack{
+    background-image: url('./Images/Back.png');
+    position: absolute;
+    display: block;
+    width: 10%;
+    height: 10%;
+    margin: 2%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}
+
+#btnTabBack{
+    background-image: url('./Images/Back.png');
+    position: absolute;
+    display: block;
+    width: 10%;
+    height: 10%;
+    margin: 2%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+}

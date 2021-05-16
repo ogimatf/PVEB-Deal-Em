@@ -1,3 +1,5 @@
+import * as home_screen from './home_screen.js';
+
 let screen = null;
 
 export const initTableScreen = () => {
@@ -28,6 +30,15 @@ export const initTableScreen = () => {
 
     let naslovIstorija = document.createElement('div');
     naslovIstorija.id = 'naslovIstorija';
+
+    let buttonBack = document.createElement('div');
+    buttonBack.id = 'btnTabBack';
+    buttonBack.onclick = () => {
+        document.body.removeChild(screen);
+        home_screen.postHomeScreen();
+    }
+
+    screen.appendChild(buttonBack);
 
     screen.appendChild(divNaslov);
     screen.appendChild(divTelo);

@@ -1,3 +1,5 @@
+import * as home_screen from './home_screen.js';
+
 let screen = null;
 
 export const initLogScreen = () => {
@@ -17,6 +19,14 @@ export const initLogScreen = () => {
         //TODO
     }
 
+    let buttonBack = document.createElement('div');
+    buttonBack.id = 'btnLogBack';
+    buttonBack.onclick = () => {
+        document.body.removeChild(screen);
+        home_screen.postHomeScreen();
+    }
+
+    screen.appendChild(buttonBack);
     screen.appendChild(buttonLogovanje);
     screen.appendChild(buttonRegist);
 }

@@ -40,14 +40,14 @@ const deletePlayingScreen = () => {
   document.body.removeChild(app.view)
 }
 
-const postPlayingScreen = () => {
+export const postPlayingScreen = () => {
   document.body.appendChild(app.view);
 }
 
 export const setScreen = () => {
-  //postHomeScreen();
+  postHomeScreen();
 
-  postPlayingScreen();
+  //postPlayingScreen();
 
   //postLogScreen();
 
