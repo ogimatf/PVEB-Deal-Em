@@ -17,6 +17,7 @@ export let pileCont = null;
 export let deckCards = [];
 export let pileCards = [];
 export let playerCards = [];
+export let opponentCards = [];
 
 export const initSprites = () => {
   background = table;
