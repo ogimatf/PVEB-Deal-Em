@@ -9,8 +9,6 @@ export function setTurn(_flag) {
   turn = _flag
 
   playerCards.map(x => x.interactive = turn);
-
-  // changeTurnColor();
 }
 
 
@@ -33,26 +31,26 @@ export const playerPointerDown = (card) => {
 
 }
 
-/**
- * @description Sends signal to server for move
- * @param {PIXI.Sprite} card
- */
 export const moveFromHandToPile = (card) => {
   const code = getKeyByValue(cardsSprites, card);
 
   Animation.playersCardsToPile(selected);
-  // socket.emit('turn', {
-  //   card: code,
-  //   cards: []
-  // });
+
+  socket.emit('turn', {
+    card: code,
+    cards: []
+  });
 }
 
 export const moveFromDeckToPlayer = (card) => {
- Animation.cardToPlayerAnimation(card)
-  // socket.emit('turn', {
-  //   card: code,
-  //   cards: talonCodes
-  // });
+  const code = getKeyByValue(cardsSprites, card);
+
+  Animation.cardToPlayerAnimation(card)
+
+  socket.emit('turn', {
+    card: code,
+    cards: talonCodes
+  });
 }
 
 export const pilePointerDown = (card) => {
@@ -67,4 +65,33 @@ export const pilePointerDown = (card) => {
 
 const getKeyByValue = (object, value) => {
   return Object.keys(object).find(key => object[key] === value);
+}
+
+
+export const applyActions = (res) => {
+
+  let cardCode = null;
+  let card = null;
+
+  switch (res.action) {
+    case 'deal':
+      setHand(res.hand);
+
+      Animation.dealCardsAnimation();
+      break;
+    case 'myCardsToPile':
+      cardCode = res.card;
+      card = cardsSprites[cardCode];
+
+      Animation.playersCardsToPile(card);
+
+      break;
+    case 'oppCardsToPile':
+      cardCode = res.card;
+      card = cardsSprites[cardCode];
+
+      Animation.cardToOpponentAnimation(card);
+
+      break;
+  }
 }
