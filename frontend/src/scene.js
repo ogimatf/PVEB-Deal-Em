@@ -1,11 +1,9 @@
 import * as PIXI from 'pixi.js';
-import * as st from './game_state';
 import { deleteHomeScreen , postHomeScreen} from './home_screen.js';
 import { deleteLogScreen, postLogScreen} from './log_screen.js';
 import { deleteTableScreen, postTableScreen} from './tabele_screen.js';
 import { loader } from './load.js';
-import { initDeck, initSprites, playersNames } from './play_screen';
-import { dealCardsAnimation } from './animation';
+import { initConnection } from './socket_conn';
 
 export let w = window.innerWidth;
 export let h = window.innerHeight;
@@ -27,10 +25,7 @@ export const initPixi = () => {
   app.stage.addChild(scene);
 
   loader.onComplete.add(() => {
-    initSprites();
-    playersNames(st.player1Name, st.player2Name);
-    initDeck();
-    dealCardsAnimation();
+    initConnection();
   })
 }
 
@@ -42,7 +37,7 @@ const deletePlayingScreen = () => {
   document.body.removeChild(app.view)
 }
 
-export const postPlayingScreen = () => {
+const postPlayingScreen = () => {
   document.body.appendChild(app.view);
 }
 
@@ -55,4 +50,5 @@ export const setScreen = () => {
 
   //postTableScreen();
 }
+
 
