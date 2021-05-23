@@ -65,38 +65,83 @@ socketHandler = (socket) => {
     });
 
     socket.on('turn', (res) => {
-        const card = new Card(res.card);
-        const cards = res.cards.map(x => new Card(x));
         const index = gameIndex[socket.id];
         const game = allGames[index];
         const num = socket.id == game.playersId.player1 ? 1 : 2;
         const player = 'player' + num;
+        const opponent = 'player' + (num == 1 ? 2 : 1);
         const opp = socket.id == game.playersId.player1
             ? game.playersId.player2 : game.playersId.player1;
         const turn = game.turn;
-        const opponent = 'player' + (num == 1 ? 2 : 1);
-        const turnCount = game.turnCounter;
 
-        // TODO
-        game.moveCardFromHandsToPile(player, card);
+        if (res.msg == 'getCard'){
+            let card = game.getCardFromDeck(player)
 
-        socket.emit('turnOn', {
-            action: 'myCardToPile',
-            card: res.card,
-            turn: false,
-            turnNum: game.turnCounter
-        });
+            socket.emit('turnOn', {
+                action: 'cardToPlayersHand',
+                card: card.toString(),
+                turn: true,
+            });
 
-        socket.to(opp).emit('turnOn', {
-            action: 'oppCardToPile',
-            card: res.card,
-            turn: true,
-            turnNum: game.turnCounter
-        });
+            socket.to(opp).emit('turnOn', {
+                action: 'cardToOpponentHand',
+                turn: false,https://gitlab.com/matfpveb/projekti/2020-2021/15-Dealem.git
+            });
+            return;
+        }
 
-        game.setTurnCounter(game.turnCounter + 1);
+        const cards = new Cards(res.cards);
 
-        game.setTurn(turn == 1 ? 2 : 1);
+        if ( game.putCardsOnPile(player, cards.show()) ) {
+            const lastCard = cards.show().pop();
+
+            if( lastCard.getRank() == '7'){
+                takeCards(socket, game, opponent, opp, 2);
+            }
+            if (lastCard.toString() == '2c'){
+                takeCards(socket, game, opponent, opp, 4);
+            }
+
+
+            socket.emit('turnOn', {
+                action: 'myCardsToPile',
+                cards: cards.toStringArray(),
+                turn: false,
+            });
+
+            socket.to(opp).emit('turnOn', {
+                action: 'oppCardsToPile',
+                cards: cards.toStringArray(),
+                turn: true,
+            });
+
+            game.setTurn(turn == 1 ? 2 : 1);
+        } else {
+            socket.emit('turnOn', {
+                action: 'wrongCards'
+            });
+        }
+
+        let playerCards = game.playersHand[player].show().length;
+        let opponentCards = game.playersHand[opponent].show().length;
+        if( playerCards == 0 || opponentCards == 0 ) {
+            // END GAME
+            let msg1 = 'lose';
+            let msg2 = 'lose'
+
+            if (playerCards == 0 )
+                msg1 = 'win'
+            else
+                msg2 = 'win'
+
+            socket.emit('endGame', {
+                msg: msg1
+            });
+
+            socket.to(opp).emit('endGame', {
+               msg: msg2
+            });
+        }
 
     });
 
@@ -114,8 +159,6 @@ socketHandler = (socket) => {
                 msg: 'disconnected'
             });
 
-            game.setTurnCounter(-1);
-
             delete gameIndex[socket.id];
             delete gameIndex[oppId];
         }
@@ -123,8 +166,23 @@ socketHandler = (socket) => {
         delete playersNames[socket.id];
 
     });
+}
 
+const takeCards = (socket, game, player, pl1, num) => {
+    for (let i = 0; i < num; i++){
+        let card = game.getCardFromDeck(player)
 
+        socket.to(pl1).emit('turnOn', {
+            action: 'cardToPlayersHand',
+            card: card.toString(),
+            turn: true,
+        });
+
+        socket.emit('turnOn', {
+            action: 'cardToOpponentHand',
+            turn: false,
+        });
+    }
 }
 
 module.exports = socketHandler;
