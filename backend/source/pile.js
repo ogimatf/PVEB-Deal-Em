@@ -14,12 +14,11 @@ class Pile extends Cards {
     }
   }
 
-  /** 
-   * @param {Card} card - card from hand
-   * @param {Cards} cards - cards from pile
+  /**
+   * @param {Card} cards - card from hand
    */
-  checkIfLegalMove(card, cards) {
-    
+  checkIfLegalMove(cards) {
+    /*
     let rankHand = card.getRank();
     let suitHand = card.getSuit();
     let rankPile = cards.getCard().getRank();
@@ -28,12 +27,14 @@ class Pile extends Cards {
     if (rank == "j") {
       return true;
     }
-    else if (rankHand == rankPile || suitHand == suitPile) { 
+    else if (rankHand == rankPile || suitHand == suitPile) {
       return true;
     }
     else {
       return false;
     }
+    */
+    return true;
   }
 
 }

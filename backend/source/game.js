@@ -45,25 +45,27 @@ class Game {
     }
   }
 
-  moveCardFromHandsToPile(player, card) {
-   let cardRemoved = this.playersHand[player].remove(card);
-
-   if (cardRemoved) {
-     this.putCardOnPile(card, this.pile.cards);
-     return true;
-   }
-   else {
-     return false;
-   }
+  getCardFromDeck(player) {
+    let card = this.deckOfCards.getCard()
+    this.playersHand[player].add([card]);
+    return card
   }
 
-  putCardOnPile = (card, cards) => {
-    if (this.pile.checkIfLegalMove(card, cards)){
-     this.pile.add(card);
+  putCardsOnPile(player, cards) {
+    if (this.pile.checkIfLegalMove(cards)){
+
+
+      this.playersHand[player].remove(cards[0]);
+      this.pile.add(cards);
+
      return true;
     } else {
       return false;
     }
+  }
+
+  putFirstCardOnPile() {
+    this.pile.add([this.deckOfCards.getCard()]);
   }
 
   setTurn(num) {
