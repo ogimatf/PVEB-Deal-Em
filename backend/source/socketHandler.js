@@ -85,7 +85,7 @@ socketHandler = (socket) => {
 
             socket.to(opp).emit('turnOn', {
                 action: 'cardToOpponentHand',
-                turn: false,https://gitlab.com/matfpveb/projekti/2020-2021/15-Dealem.git
+                turn: false,
             });
             return;
         }
