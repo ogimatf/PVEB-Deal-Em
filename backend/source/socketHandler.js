@@ -1,12 +1,11 @@
 const Card = require('./card');
+const Cards = require('./cards');
 const Game = require('./game');
 
 let gamesCounter = 0;
 
 let allGames = [];
 let gameIndex = {};
-let rematch = {};
-let accept = {};
 let playersNames = {};
 lobby = '';
 
@@ -17,7 +16,7 @@ socketHandler = (socket) => {
         id: socket.id,
     });
 
-    socket.on('gameLobby', (msg) => {
+    socket.on('enterToLobby', (msg) => {
 
         playersNames[socket.id] = msg.name
         if (lobby === '') {
@@ -27,6 +26,8 @@ socketHandler = (socket) => {
             const game = new Game(socket.id, lobby);
 
             game.deckOfCards.shuffle();
+            game.putFirstCardOnPile();
+            game.dealCards();
 
             allGames.push(game);
             gameIndex[lobby] = gamesCounter;
@@ -46,8 +47,6 @@ socketHandler = (socket) => {
 
             gamesCounter += 1;
         }
-
-
     })
 
     socket.on('gameStart', (msg) => {
@@ -60,10 +59,9 @@ socketHandler = (socket) => {
         socket.emit('turnOn', {
             action: 'deal',
             hand: game.playersHand[player].toStringArray(),
-            turn: num == turn,
-            turnNum: game.turnCounter
+            pile: game.pile.toStringArray(),
+            turn: num == turn
         });
-
     });
 
     socket.on('turn', (res) => {
