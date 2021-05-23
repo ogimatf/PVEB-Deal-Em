@@ -23,7 +23,7 @@ export const dealCardsAnimation = () => {
       firstCard.x = 0;
       firstCard.y = 0;
       let cardFace = cardsSprites[pile[0]];
-      faceUpCard(firstCard, cardFace, ps.pileCont, ps.pileCards, moveFromHandToPile);
+      faceUpCard(firstCard, cardFace, ps.pileCont, ps.pileCards, pilePointerDown);
     }
   });
 
@@ -76,17 +76,9 @@ export const cardToPlayerAnimation = (card) => {
   let startAnim = 500;
   let handWidth = w * .4;
 
-  for (let i = 0; i < ps.playerCards.length; i++){
-    let playerCard = ps.playerCards[i];
-    anime({
-      targets: playerCard.position,
-      x: -handWidth/2 + i * handWidth/(ps.playerCards.length + 1.5) + ps.cardWidth/2,
-      duration: dur,
-      easing: ease,
-      delay: anime.stagger(0, { start: startAnim }),
-    })
-  }
+  formatHand(ps.playerCards);
 
+  let cardFace = card;
   card = ps.deckCards.pop();
 
   anime({
@@ -102,31 +94,22 @@ export const cardToPlayerAnimation = (card) => {
       card.x = handWidth/2 - ps.cardWidth/2;
       card.y = - ps.cardHeigth * .7;
 
-      let cardFace = cardsSprites[hand[6]];
       faceUpCard(card, cardFace, ps.playerCont, ps.playerCards, playerPointerDown);
+      formatHand(ps.playerCards);
     }
   })
 }
 
-export const cardToOpponentAnimation = (card) => {
+export const cardToOpponentAnimation = () => {
   let ease = 'easeOutSine';
   let dur = 500;
 
   let startAnim = 500;
   let handWidth = w * .4;
 
-  for (let i = 0; i < ps.opponentCards.length; i++){
-    let opponentCard = ps.opponentCards[i];
-    anime({
-      targets: opponentCard.position,
-      x: -handWidth/2 + i * handWidth/(ps.opponentCards.length + 1.5) + ps.cardWidth/2,
-      duration: dur,
-      easing: ease,
-      delay: anime.stagger(0, { start: startAnim }),
-    })
-  }
+  formatHand(ps.opponentCards);
 
-  card = ps.deckCards.pop();
+  let card = ps.deckCards.pop();
 
   anime({
     targets: card.position,
@@ -139,6 +122,8 @@ export const cardToOpponentAnimation = (card) => {
       transferCard(ps.deckCont, null, ps.opponentCont, ps.opponentCards, card);
       card.x = handWidth/2 - ps.cardWidth/2;
       card.y = ps.cardHeigth * .7;
+      interactivity(card, null);
+      formatHand(ps.opponentCards)
     }
   })
 }
@@ -150,10 +135,14 @@ export const playersCardsToPile = (cards) => {
 
   for (let i = 0; i < cards.length; i++){
     let card = cards[i];
+    transferCard(ps.playerCont, ps.playerCards, ps.pileCont, ps.pileCards, card);
+    card.x += -ps.pileCont.x + ps.playerCont.x;
+    card.y += -ps.pileCont.y + ps.playerCont.y;
+
     anime({
       targets: card.position,
-      x: ps.pileCont.x - ps.playerCont.x,
-      y: ps.pileCont.y - ps.playerCont.y,
+      x: 0,
+      y: 0,
       duration: dur,
       easing: ease,
       delay: anime.stagger(0, { start: startAnim }),
@@ -162,6 +151,37 @@ export const playersCardsToPile = (cards) => {
         card.x = 0;
         card.y = 0;
         interactivity(card, pilePointerDown);
+        formatHand(ps.playerCards)
+      }
+    })
+  }
+}
+
+export const opponentsCardsToPile = (cards) => {
+  let ease = 'easeOutSine';
+  let dur = 500;
+  let startAnim = 500;
+
+  for (let i = 0; i < cards.length; i++){
+    let card = ps.opponentCards.pop();
+    transferCard(ps.opponentCont, null, ps.pileCont, ps.pileCards, card);
+    card.x += ps.pileCont.x - ps.playerCont.x;
+    card.y += ps.pileCont.y - ps.playerCont.y;
+
+    anime({
+      targets: card.position,
+      x: 0,
+      y: 0,
+      duration: dur,
+      easing: ease,
+      delay: anime.stagger(0, { start: startAnim }),
+      complete: () => {
+        transferCard(ps.playerCont, null, ps.pileCont, ps.pileCards, card);
+        card.x = 0;
+        card.y = 0;
+
+        faceUpCard(card, cards[i], ps.pileCont, ps.pileCards, pilePointerDown);
+        formatHand(ps.opponentCards)
       }
     })
   }
@@ -207,11 +227,11 @@ const faceUpCard = (card, face, cardCont, cardArr, pointerFunc) => {
 
 export const interactivity = (card, func) => {
   card.removeAllListeners();
+  card.width = ps.cardWidth;
+  card.height = ps.cardHeigth;
 
   if (func == null) return;
 
-  card.width = ps.cardWidth;
-  card.height = ps.cardHeigth;
   card.interactive = true//turn;
   card
       .on('pointerdown', () => {
@@ -238,4 +258,24 @@ const removeCardFromArr = (card, arr) => {
   if (arr == null) return;
   let index = arr.indexOf(card);
   arr.splice(index, 1);
+}
+
+
+const formatHand = (cards) => {
+  let ease = 'easeOutSine';
+  let dur = 500;
+
+  let startAnim = 500;
+  let handWidth = w * .4;
+
+  for (let i = 0; i < cards.length; i++){
+    let playerCard = cards[i];
+    anime({
+      targets: playerCard.position,
+      x: -handWidth/2 + i * handWidth/(cards.length) + ps.cardWidth/2,
+      duration: dur,
+      easing: ease,
+      delay: anime.stagger(0, { start: startAnim }),
+    })
+  }
 }

@@ -1,191 +1,223 @@
-body{
-    margin: 0px;
-    overflow: hidden;
-    text-align: center;
-    background-color: #000000;
+body {
+  margin: 0px;
+  overflow: hidden;
+  text-align: center;
+  background-color: #000000;
 }
 
-#homeScreen{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: url('./Images/background_green.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#homeScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./Images/background_green.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#logScreen{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: url('./Images/background_green.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#logScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./Images/background_green.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#tableScreen{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image: url('./Images/background_green.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+#tableScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./Images/background_green.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#btnIgraj{
-    background-image: url('./Images/BtnIgraj.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%;
-    margin: 1%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnIgraj {
+  background-image: url("./Images/BtnIgraj.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 1%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnUlog{
-    background-image: url('./Images/BtnUlog.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%;
-    margin: 1%;
-    position: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnUlog {
+  background-image: url("./Images/BtnUlog.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 1%;
+  position: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnTabele{
-    background-image: url('./Images/BtnTabele.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%;
-    margin: 1%; 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnTabele {
+  background-image: url("./Images/BtnTabele.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 1%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnOpcije{
-    background-image: url('./Images/BtnOpcije.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%; 
-    margin: 1%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnOpcije {
+  background-image: url("./Images/BtnOpcije.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 1%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnLogovanje{
-    background-image: url('./Images/BtnPrijava.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%;
-    margin-right: 10%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnLogovanje {
+  background-image: url("./Images/BtnPrijava.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin-right: 10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnRegist{
-    background-image: url('./Images/BtnReg.png');
-    display: inline-block;
-    width: 20%;
-    height: 100%; 
-    margin-left: 10%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#btnRegist {
+  background-image: url("./Images/BtnReg.png");
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin-left: 10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#tableNaslov{
-    background-image: url('./Images/Tabele.png');
-    display: block;
-    width: 100%;
-    height: 20%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#tableNaslov {
+  background-image: url("./Images/Tabele.png");
+  display: block;
+  width: 100%;
+  height: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#tableTelo{
-    display: block;
-    width: 100%;
-    height: 80%;
+#tableTelo {
+  display: block;
+  width: 100%;
+  height: 80%;
 }
 
-#tabelaNedelja{
-    display: inline-block;
-    width: 33%;
-    height: 100%;
+#tabelaNedelja {
+  display: inline-block;
+  width: 33%;
+  height: 100%;
 }
 
-#tabelaMesec{
-    display: inline-block;
-    width: 33%;
-    height: 100%;
+#tabelaMesec {
+  display: inline-block;
+  width: 33%;
+  height: 100%;
 }
 
-#tabelaIstorija{
-    display: inline-block;
-    width: 33%;
-    height: 100%;
+#tabelaIstorija {
+  display: inline-block;
+  width: 33%;
+  height: 100%;
 }
 
-#naslovNedelja{
-    background-image: url('./Images/Nedelja.png');
-    display: block;
-    width: 100%;
-    height: 20%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#naslovNedelja {
+  background-image: url("./Images/Nedelja.png");
+  display: block;
+  width: 100%;
+  height: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#naslovMesec{
-    background-image: url('./Images/Mesec.png');
-    display: block;
-    width: 100%;
-    height: 20%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#naslovMesec {
+  background-image: url("./Images/Mesec.png");
+  display: block;
+  width: 100%;
+  height: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#naslovIstorija{
-    background-image: url('./Images/Istorija.png');
-    display: block;
-    width: 100%;
-    height: 20%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#naslovIstorija {
+  background-image: url("./Images/Istorija.png");
+  display: block;
+  width: 100%;
+  height: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
-#btnLogBack{
-    background-image: url('./Images/Back.png');
-    position: absolute;
-    display: block;
-    width: 10%;
-    height: 10%;
-    margin: 2%;
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: contain;
+#btnLogBack {
+  background-image: url("./Images/Back.png");
+  position: absolute;
+  display: block;
+  width: 10%;
+  height: 10%;
+  margin: 2%;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
 }
 
-#btnTabBack{
-    background-image: url('./Images/Back.png');
-    position: absolute;
-    display: block;
-    width: 10%;
-    height: 10%;
-    margin: 2%;
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: contain;
+#btnTabBack {
+  background-image: url("./Images/Back.png");
+  position: absolute;
+  display: block;
+  width: 10%;
+  height: 10%;
+  margin: 2%;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+}
+
+#blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+}
+
+#wait-win {
+  position: absolute;
+  background-color: #fff;
+  width: 50%;
+  height: 30%;
+  left: 25%;
+  top: 30%;
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 15px;
+}
+
+#btn-back {
+  position: relative;
+  display: block;
+  background-color: red;
+  color: #fff;
+  transform: translate(0%, 30px);
+  left: 30%;
+  width: 40%;
 }
