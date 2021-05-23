@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { moveFromDeckToPlayer } from './actions';
+import { deckPointerDown } from './actions';
 import { interactivity } from './animation';
 import { cardsSprites, table } from './load';
 import { h, scene, w } from './scene';
@@ -90,6 +90,6 @@ export const initDeck = () => {
     deckCont.addChild(card);
     deckCards.push(card);
 
-    interactivity(card, moveFromDeckToPlayer);
+    interactivity(card, deckPointerDown);
   }
 }
