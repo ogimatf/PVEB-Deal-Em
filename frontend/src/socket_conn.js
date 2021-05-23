@@ -1,13 +1,18 @@
 import { io } from 'socket.io-client';
 import * as st from './game_state';
 import { initDeck, initSprites, playersNames } from './play_screen';
-import { setTurn } from './actions';
+import { applyActions, setTurn } from './actions';
+import { deleteHomeScreen } from './home_screen';
+import { postPlayingScreen } from './scene';
+
+export let socket = null;
 
 let host = 'http://localhost:4004'
 let mySocketId = null;
 
+
 export const initConnection = () => {
-  let socket = io(host);
+  socket = io(host);
 
   socket.on('successful', (msg) => {
     mySocketId = msg.id;
@@ -28,6 +33,9 @@ export const initConnection = () => {
 
     initDeck();
 
+    deleteHomeScreen();
+    postPlayingScreen();
+
     socket.emit('gameStart', "game run");
   });
 
@@ -35,6 +43,10 @@ export const initConnection = () => {
     applyActions(res);
     setTurn(res.turn);
   });
+
+  socket.on('endGame', (res) => {
+    alert(res.msg)
+  })
 }
 
 
