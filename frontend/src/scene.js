@@ -1,7 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { deleteHomeScreen , postHomeScreen} from './home_screen.js';
-import { deleteLogScreen, postLogScreen} from './log_screen.js';
-import { deleteTableScreen, postTableScreen} from './tabele_screen.js';
+import { postHomeScreen} from './home_screen.js';
 import { loader } from './load.js';
 import { initConnection } from './socket_conn';
 
@@ -19,7 +17,6 @@ export const initPixi = () => {
     resizeTo: window,
     backgroundColor: 0x000000,
   });
-  //
 
   scene = new PIXI.Container();
   app.stage.addChild(scene);
@@ -33,11 +30,11 @@ export const setPlayActive = (mode) => {
   isPlayActive = mode;
 }
 
-const deletePlayingScreen = () => {
+export const deletePlayingScreen = () => {
   document.body.removeChild(app.view)
 }
 
-const postPlayingScreen = () => {
+export const postPlayingScreen = () => {
   document.body.appendChild(app.view);
 }
 
