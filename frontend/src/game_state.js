@@ -1,5 +1,5 @@
-export let hand = ['3h','ac','3c','8d','kc','7h', '9h'];
-export let pile = ['jh'];
+export let hand = [];
+export let pile = [];
 export let player1Name = 'Player1';
 export let player2Name = 'Player2';
 
@@ -8,13 +8,17 @@ export const setHand = (value) => {
 }
 
 export const setPile = (value) => {
-  pile = value
+  pile = value;
 }
 
 export const setPlayer1Name = (value) => {
-  player1Name = value
+  player1Name = value || player1Name;
 }
 
 export const setPlayer2Name = (value) => {
-  player2Name = value
+  player2Name = value || player2Name;
+}
+
+export const addToHand = (card) => {
+  hand.push(card);
 }
