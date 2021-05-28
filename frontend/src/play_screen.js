@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js';
 import { deckPointerDown } from './actions';
 import { interactivity } from './animation';
-import { cardsSprites, table } from './load';
-import { h, scene, w } from './scene';
+import { postHomeScreen } from './home_screen';
+import { cardsSprites, home_btn, table } from './load';
+import { deletePlayingScreen, h, scene, setScreen, w } from './scene';
+import { socket } from './socket_conn';
 
 export let cardWidth = 0;
 export let cardHeigth = 0;
@@ -38,6 +40,21 @@ export const initSprites = () => {
   pileCont = new PIXI.Container();
   pileCont.position.set(w/2, h/2);
   scene.addChild(pileCont);
+
+  home_btn.position.set(20,20);
+  home_btn.width = w/8
+  home_btn.height = home_btn.width * 0.4
+  home_btn.interactive = true;
+  home_btn.on('pointerdown', () => {
+    home_btn.y += 3
+  })
+  home_btn.on('pointerup', () => {
+    home_btn.y -= 3
+    socket.emit('cancel', 'leftGame');
+    deletePlayingScreen();
+    postHomeScreen();
+  })
+  scene.addChild(home_btn);
 }
 
 export const playersNames = (name1, name2) => {
