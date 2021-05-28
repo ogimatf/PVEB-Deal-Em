@@ -92,7 +92,7 @@ socketHandler = (socket) => {
 
         const cards = new Cards(res.cards);
 
-        if ( game.putCardsOnPile(player, cards.show()) ) {
+        if ( game.putCardsOnPile(player, cards.show(), game.pile.getTopCard())) {
             const lastCard = cards.show().pop();
 
             if( lastCard.getRank() == '7'){

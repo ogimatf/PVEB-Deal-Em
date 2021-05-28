@@ -13,28 +13,41 @@ class Pile extends Cards {
       this.cards.push(c);
     }
   }
+  getTopCard() {
+    return this.cards[this.cards.length-1];
+  }
 
   /**
-   * @param {Card} cards - card from hand
+   * @param {Cards} cards - cards from hand
    */
-  checkIfLegalMove(cards) {
-    /*
-    let rankHand = card.getRank();
-    let suitHand = card.getSuit();
-    let rankPile = cards.getCard().getRank();
-    let suitPile = cards.getCard().getRank();
-    // ako je zandar mozemo ga staviti sigurno
-    if (rank == "j") {
-      return true;
-    }
-    else if (rankHand == rankPile || suitHand == suitPile) {
-      return true;
+  checkIfLegalMove(cards, card) {
+    
+    let rankPile = card.getRank();
+    let suitPile = card.getSuit();
+
+    if(cards.length == 1) {
+      let card = cards[0];
+      let rankHand = card.getRank();
+      let suitHand = card.getSuit();
+      if (rank == "j") {
+        return true;
+      }
+      else if (rankHand == rankPile || suitHand == suitPile) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
     else {
-      return false;
+      let card = cards.getCard();
+      if(card.getRank() == "1") {
+        return this.checkIfLegalMove(cards, card);
+      }
+      else {
+        return false;
+      }
     }
-    */
-    return true;
   }
 
 }

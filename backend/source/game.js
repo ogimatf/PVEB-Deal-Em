@@ -51,9 +51,8 @@ class Game {
     return card
   }
 
-  putCardsOnPile(player, cards) {
-    if (this.pile.checkIfLegalMove(cards)){
-
+  putCardsOnPile(player, cards, card) {
+    if (this.pile.checkIfLegalMove(cards, card)){
 
       this.playersHand[player].remove(cards[0]);
       this.pile.add(cards);
@@ -71,7 +70,6 @@ class Game {
   setTurn(num) {
    this.turn = num;
   }
-
 }
 
 module.exports = Game
