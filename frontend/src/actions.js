@@ -1,4 +1,4 @@
-import { cardsSprites } from './load.js';
+import { cardsSprites, table } from './load.js';
 import { playerCards } from './play_screen.js';
 import * as Animation from './animation.js'
 import { addToHand, setHand, setPile } from './game_state.js';
@@ -9,6 +9,8 @@ export let turn = false;
 
 export function setTurn(_flag) {
   turn = _flag
+
+  Animation.turnAnimation(turn)
 
   playerCards.map(x => x.interactive = turn);
 }
