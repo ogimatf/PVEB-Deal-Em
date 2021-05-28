@@ -49,6 +49,20 @@ socketHandler = (socket) => {
         }
     })
 
+    socket.on('cancel', (msg) => {
+        const index = gameIndex[socket.id];
+        const game = allGames[index];
+        const opp = socket.id == game.playersId.player1
+        ? game.playersId.player2 : game.playersId.player1;
+
+        if(msg == 'leftGame'){
+            socket.to(opp).emit('opponentLeftGame', {});
+        }
+        else {
+            lobby = '';
+        }
+    })
+
     socket.on('gameStart', (msg) => {
         const index = gameIndex[socket.id];
         const game = allGames[index];
@@ -125,21 +139,33 @@ socketHandler = (socket) => {
         let playerCards = game.playersHand[player].show().length;
         let opponentCards = game.playersHand[opponent].show().length;
         if( playerCards == 0 || opponentCards == 0 ) {
-            // END GAME
-            let msg1 = 'lose';
-            let msg2 = 'lose'
+            let resultPlayer = game.playersHand[player].countPoints();
+            let resultOpponent = game.playersHand[player].countPoints();
+
+            console.log(game.playersHand)
+
+            let msg1 = 'LOSE';
+            let msg2 = 'LOSE'
 
             if (playerCards == 0 )
-                msg1 = 'win'
+                msg1 = 'WIN'
             else
-                msg2 = 'win'
+                msg2 = 'WIN'
 
             socket.emit('endGame', {
-                msg: msg1
+                data: {
+                    msg: msg1,
+                    player: resultPlayer,
+                    opponent: resultOpponent
+                }
             });
 
             socket.to(opp).emit('endGame', {
-               msg: msg2
+                data: {
+                    msg: msg2,
+                    player: resultPlayer,
+                    opponent: resultOpponent
+                }
             });
         }
 
