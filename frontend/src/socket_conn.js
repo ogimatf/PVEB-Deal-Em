@@ -2,14 +2,15 @@ import { io } from 'socket.io-client';
 import * as st from './game_state';
 import { initDeck, initSprites, playersNames } from './play_screen';
 import { applyActions, setTurn } from './actions';
-import { deleteHomeScreen } from './home_screen';
-import { postPlayingScreen } from './scene';
+import { deleteHomeScreen, postHomeScreen, removeWindow } from './home_screen';
+import { deletePlayingScreen, postPlayingScreen, setScreen } from './scene';
+import { endGameAnimate } from './animation';
+import { initEndScreen, showEndScreen } from './end_screen';
 
 export let socket = null;
 
 let host = 'http://localhost:4004'
 let mySocketId = null;
-
 
 export const initConnection = () => {
   socket = io(host);
@@ -21,9 +22,7 @@ export const initConnection = () => {
 
   socket.on('ready', (data) => {
 
-    if (data.msg != 'rematch') {
-      // TODO delete home screen
-    }
+    removeWindow();
 
     st.setPlayer1Name(data.playerName);
     st.setPlayer2Name(data.opponentName);
@@ -45,11 +44,16 @@ export const initConnection = () => {
   });
 
   socket.on('endGame', (res) => {
-    alert(res.msg)
+    initEndScreen(res.data)
+    showEndScreen();
+    console.log('end')
+  })
+
+  socket.on('opponentLeftGame',(msg) => {
+    deletePlayingScreen();
+    postHomeScreen();
   })
 }
-
-
 
 export const gameRequest = () => {
   socket.emit('gameRequest', 'rand game');
