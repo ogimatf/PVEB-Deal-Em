@@ -49,7 +49,24 @@ router.post("/regist", async (req, res) => {
 });
 
 router.get("/log", async (req, res) => {
-//TODO
+  const name = req.headers.name;
+
+  const database = await db.getDatabase();
+
+  database
+    .collection("user")
+    .findOne({ name })
+    .then((result) => {
+      if (result === null) {
+        res.status(406).json({ msg: "Not Found" });
+      } else {
+        res.status(200).json({ msg: "OK" });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ msg: "Failed" });
+    });
 });
 
 router.get("/all", async (req, res) => {
