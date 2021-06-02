@@ -1,36 +1,35 @@
-const Card = require('./card');
+const Card = require("./card");
 
 class Cards {
+  constructor(cards) {
+    let cardsArray = [];
 
-    constructor(cards) {
-      let cardsArray = [];
-
-      for (let s of cards) {
-        cardsArray.push(new Card(s));
-      }
-      this.cards = cardsArray;
+    for (let s of cards) {
+      cardsArray.push(new Card(s));
     }
-
-    toStringArray() {
-      let strings = [];
-
-      for (let card of this.cards) {
-        strings.push(card.toString());
-      }
-      return strings;
-    }
-
-    size() {
-      return this.cards.length;
-    }
-
-    show() {
-      return [...this.cards];
-    }
-
-    getCard() {
-      return this.cards.pop();
-    }
+    this.cards = cardsArray;
   }
 
-  module.exports = Cards;
+  toStringArray() {
+    let strings = [];
+
+    for (let card of this.cards) {
+      strings.push(card.toString());
+    }
+    return strings;
+  }
+
+  size() {
+    return this.cards.length;
+  }
+
+  show() {
+    return [...this.cards];
+  }
+
+  getCard() {
+    return this.cards.pop();
+  }
+}
+
+module.exports = Cards;

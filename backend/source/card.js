@@ -1,10 +1,7 @@
 class Card {
-
   constructor(cardString) {
-
-   this.suit = cardString.charAt(1);
-   this.rank = cardString.charAt(0);
-
+    this.suit = cardString.charAt(1);
+    this.rank = cardString.charAt(0);
   }
 
   getSuit() {
