@@ -146,15 +146,68 @@ export const setRegistWindow = () => {
 };
 
 const logUser = () => {
-//TODO
+  title = document.createElement("div");
+  title.id = "title";
+  title.innerHTML = "Logovanje";
+  registWin.appendChild(title);
+
+  form = document.createElement("div");
+  form.id = "regist-form";
+  form.innerHTML = `
+      Username <br> <input type="text" name="Name"><br>
+      `;
+  registWin.appendChild(form);
+
+  let msgBar = document.createElement("div");
+  msgBar.id = "msg-bar";
+  form.appendChild(msgBar);
+
+  let btnRegist = document.createElement("button");
+  btnRegist.id = "btn-regist";
+  btnRegist.innerHTML = "Uloguj Se";
+  btnRegist.onclick = () => {
+    logRequest().then((res) => {
+      msgBar.innerHTML = "";
+      console.log(res);
+      if (res.status == 200) {
+        removeLogWindow();
+        setIsLoged(true);
+      } else {
+        msgBar.innerHTML = "Igrac nije registrovan";
+        setPlayer1Name("Player1");
+      }
+    });
+  };
+  form.appendChild(btnRegist);
 };
 
 const logRequest = async () => {
-//TODO
+  let name = getInputValue("Name", 1, 11);
+
+  if (errorMsg !== "") {
+    setErrorMsg("");
+    throw new Error(errorMsg);
+  }
+
+  let url = "http://localhost:4004" + "/user/log";
+
+  const response = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      name: name,
+    },
+  });
+
+  setPlayer1Name(name);
+
+  return response;
 };
 
 const removeLogWindow = () => {
-//TODO
+  screen.removeChild(blur);
+  screen.removeChild(registWin);
 };
 
 export let errorMsg = "";
