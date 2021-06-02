@@ -1,12 +1,10 @@
-const Cards = require('./cards');
-const Card = require('./card');
+const Cards = require("./cards");
+const Card = require("./card");
 
 class Pile extends Cards {
-
   constructor() {
     super([]);
   }
-
 
   add(cards) {
     for (let c of cards) {
@@ -14,42 +12,36 @@ class Pile extends Cards {
     }
   }
   getTopCard() {
-    return this.cards[this.cards.length-1];
+    return this.cards[this.cards.length - 1];
   }
 
   /**
    * @param {Cards} cards - cards from hand
    */
   checkIfLegalMove(cards, card) {
-    
     let rankPile = card.getRank();
     let suitPile = card.getSuit();
 
-    if(cards.length == 1) {
+    if (cards.length == 1) {
       let card = cards[0];
       let rankHand = card.getRank();
       let suitHand = card.getSuit();
-      if (rank == "j") {
+      if (rankHand == "j") {
         return true;
-      }
-      else if (rankHand == rankPile || suitHand == suitPile) {
+      } else if (rankHand == rankPile || suitHand == suitPile) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
-    }
-    else {
-      let card = cards.getCard();
-      if(card.getRank() == "1") {
+    } else {
+      let card = cards.pop();
+      if (card.getRank() == "1") {
         return this.checkIfLegalMove(cards, card);
-      }
-      else {
+      } else {
         return false;
       }
     }
   }
-
 }
 
 module.exports = Pile;
