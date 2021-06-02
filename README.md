@@ -2,6 +2,47 @@
 
 2D card game
 
+## Database
+
+MongoDB running at localhost:27017.
+
+## Build
+
+Install required dependecies in the backend and frontend folders:
+
+- Backend folder
+```
+npm init
+npm i
+npm mongodb
+npm start
+```
+
+
+- Frontend folder
+```
+npm i
+npm i socket.io-client
+npm run build
+npm start
+```
+
+You can also watch simple [tutorial video](https://youtu.be/OWAN1mZWLQY) on how to build project from scratch.
+
+## Database schemas
+
+**User:**
+
+| Field | Type | Description |
+| ------ | ------ | -------- |
+| name | String | Unique username | 
+| winNum | Int32 | Number of won games |
+| loseNum |  Int32   | Number of lost games |
+| points  | Int32 | Total points |
+
+## Video
+Video showing project's main features is on [link](https://www.youtube.com/watch?v=i41OfKKn2xA&ab_channel=v1rtuoso)
+
 ## Developers
 
 - [Ognjen Stamenkovic, 64/2017](https://gitlab.com/ogimatf)
