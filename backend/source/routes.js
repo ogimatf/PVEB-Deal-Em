@@ -70,7 +70,20 @@ router.get("/log", async (req, res) => {
 });
 
 router.get("/all", async (req, res) => {
-//TODO
+  const database = await db.getDatabase();
+
+  database
+    .collection("user")
+    .find()
+    .sort({ winNum: -1 })
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(500).json({ msg: "DB Failed" });
+        throw err;
+      }
+
+      res.status(200).send({ result });
+    });
 });
 
 module.exports = router;
