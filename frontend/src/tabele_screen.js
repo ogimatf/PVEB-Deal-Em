@@ -1,62 +1,89 @@
-import * as home_screen from './home_screen.js';
+import * as home_screen from "./home_screen.js";
 
 let screen = null;
 
+let scoreBoard = null;
+let scoreTable = null;
+
 export const initTableScreen = () => {
+  screen = document.createElement("div");
+  screen.id = "tableScreen";
 
-    screen = document.createElement('div');
-    screen.id = 'tableScreen';
+  let divNaslov = document.createElement("div");
+  divNaslov.id = "tableNaslov";
 
-    let divNaslov = document.createElement('div');
-    divNaslov.id = 'tableNaslov';
+  let divTelo = document.createElement("div");
+  divTelo.id = "tableTelo";
 
-    let divTelo = document.createElement('div');
-    divTelo.id = 'tableTelo';
+  let tabelaIstorija = document.createElement("div");
+  tabelaIstorija.id = "tabelaIstorija";
 
-    let tabelaNedelja = document.createElement('div');
-    tabelaNedelja.id = 'tabelaNedelja';
+  let naslovIstorija = document.createElement("div");
+  naslovIstorija.id = "naslovIstorija";
 
-    let tabelaMesec = document.createElement('div');
-    tabelaMesec.id = 'tabelaMesec';
+  let buttonBack = document.createElement("div");
+  buttonBack.id = "btnTabBack";
+  buttonBack.onclick = () => {
+    document.body.removeChild(screen);
+    home_screen.postHomeScreen();
+  };
 
-    let tabelaIstorija = document.createElement('div');
-    tabelaIstorija.id = 'tabelaIstorija';
+  screen.appendChild(buttonBack);
 
-    let naslovNedelja = document.createElement('div');
-    naslovNedelja.id = 'naslovNedelja';
+  screen.appendChild(divNaslov);
+  screen.appendChild(divTelo);
 
-    let naslovMesec =  document.createElement('div');
-    naslovMesec.id = 'naslovMesec';
+  divTelo.appendChild(tabelaIstorija);
 
-    let naslovIstorija = document.createElement('div');
-    naslovIstorija.id = 'naslovIstorija';
+  tabelaIstorija.appendChild(naslovIstorija);
 
-    let buttonBack = document.createElement('div');
-    buttonBack.id = 'btnTabBack';
-    buttonBack.onclick = () => {
-        document.body.removeChild(screen);
-        home_screen.postHomeScreen();
-    }
+  scoreBoard = document.createElement("div");
+  scoreBoard.id = "table-board";
+  tabelaIstorija.appendChild(scoreBoard);
 
-    screen.appendChild(buttonBack);
-
-    screen.appendChild(divNaslov);
-    screen.appendChild(divTelo);
-
-    divTelo.appendChild(tabelaNedelja);
-    divTelo.appendChild(tabelaMesec);
-    divTelo.appendChild(tabelaIstorija);
-
-    tabelaNedelja.appendChild(naslovNedelja);
-    tabelaMesec.appendChild(naslovMesec);
-    tabelaIstorija.appendChild(naslovIstorija);
-}
-
+  scoreTable = document.createElement("table");
+  scoreTable.id = "score-table";
+  scoreBoard.appendChild(scoreTable);
+};
 
 export const postTableScreen = () => {
-    document.body.appendChild(screen);
-}
+  document.body.appendChild(screen);
+};
 
 export const deleteTableScreen = () => {
-    document.body.removeChild(log);
-}
+  document.body.removeChild(log);
+};
+
+export const getUsers = () => {
+  getUsersRequest().then((res) => {
+    res.json().then((data) => {
+      let users = data.result;
+
+      let table =
+        "<tr><th> Ime </th><th> Pobede </th> " +
+        "<th> Porazi </th> <th> Poeni </th> " +
+        "</tr> ";
+
+      for (let user of users) {
+        table += "<tr><td>" + user.name + "</td><td>" + user.winNum;
+        table += "</td><td>" + user.loseNum;
+        table += "</td><td>" + user.points + "</td></tr>";
+      }
+      scoreTable.innerHTML = table;
+    });
+  });
+};
+
+const getUsersRequest = async () => {
+  let url = "http://localhost:4004" + "/user/all";
+
+  const response = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return response;
+};
