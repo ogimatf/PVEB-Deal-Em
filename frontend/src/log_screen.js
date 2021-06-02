@@ -47,23 +47,102 @@ export const deleteRegistScreen = () => {
 };
 
 export const setWindow = () => {
-//TODO
+  blur = document.createElement("div");
+  blur.id = "blur";
+  screen.appendChild(blur);
+
+  registWin = document.createElement("div");
+  registWin.id = "regist-win";
+  screen.appendChild(registWin);
+
+  let btnBack = document.createElement("div");
+  btnBack.id = "regist-back";
+  btnBack.innerHTML = "+";
+  btnBack.onclick = () => {
+    removeRegistWindow();
+  };
+  registWin.appendChild(btnBack);
 };
 
 const registUser = () => {
-//TODO
+  title = document.createElement("div");
+  title.id = "title";
+  title.innerHTML = "Registracija";
+  registWin.appendChild(title);
+
+  form = document.createElement("div");
+  form.id = "regist-form";
+  form.innerHTML = `
+      Username <br> <input type="text" name="Name"><br>
+      `;
+  registWin.appendChild(form);
+
+  let msgBar = document.createElement("div");
+  msgBar.id = "msg-bar";
+  form.appendChild(msgBar);
+
+  let btnRegist = document.createElement("button");
+  btnRegist.id = "btn-regist";
+  btnRegist.innerHTML = "Registruje Se";
+  btnRegist.onclick = () => {
+    registRequest().then((res) => {
+      msgBar.innerHTML = "";
+      console.log(res);
+      if (res.status == 200) {
+        removeRegistWindow();
+      } else {
+        msgBar.innerHTML = "Igrac je vec registrovan";
+      }
+    });
+  };
+  form.appendChild(btnRegist);
 };
 
 const registRequest = async () => {
-//TODO
+  let name = getInputValue("Name", 1, 11);
+
+  if (errorMsg !== "") {
+    setErrorMsg("");
+    throw new Error(errorMsg);
+  }
+
+  let url = "http://localhost:4004" + "/user/regist/";
+
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      name: name,
+    },
+  });
+
+  return response;
 };
 
 const removeRegistWindow = () => {
-//TODO
+  screen.removeChild(blur);
+  screen.removeChild(registWin);
 };
 
 export const setRegistWindow = () => {
-//TODO
+  blur = document.createElement("div");
+  blur.id = "blur";
+  screen.appendChild(blur);
+
+  registWin = document.createElement("div");
+  registWin.id = "regist-win";
+  screen.appendChild(registWin);
+
+  let btnBack = document.createElement("div");
+  btnBack.id = "regist-back";
+  btnBack.innerHTML = "+";
+  btnBack.onclick = () => {
+    removeRegistWindow();
+  };
+  registWin.appendChild(btnBack);
+
+  registUser();
 };
 
 const logUser = () => {
