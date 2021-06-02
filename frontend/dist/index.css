@@ -5,6 +5,46 @@ body {
   background-color: #000000;
 }
 
+button {
+  position: absolute;
+  font-size: larger;
+  text-align: center;
+  color: #fff;
+  background-color: #4caf50;
+  border: outset 1px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgba(155, 155, 155, 1);
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  height: 50px;
+  width: 33%;
+  vertical-align: center;
+  align-items: center;
+  border-bottom: 1px solid #555;
+}
+
+th {
+  border-bottom: 2px double #555;
+}
+
+h2 {
+  margin-left: 100%;
+}
+
 #homeScreen {
   position: absolute;
   width: 100%;
@@ -118,42 +158,10 @@ body {
   height: 80%;
 }
 
-#tabelaNedelja {
-  display: inline-block;
-  width: 33%;
-  height: 100%;
-}
-
-#tabelaMesec {
-  display: inline-block;
-  width: 33%;
-  height: 100%;
-}
-
 #tabelaIstorija {
   display: inline-block;
   width: 33%;
   height: 100%;
-}
-
-#naslovNedelja {
-  background-image: url("./Images/Nedelja.png");
-  display: block;
-  width: 100%;
-  height: 20%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-#naslovMesec {
-  background-image: url("./Images/Mesec.png");
-  display: block;
-  width: 100%;
-  height: 20%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 }
 
 #naslovIstorija {
@@ -220,4 +228,97 @@ body {
   transform: translate(0%, 30px);
   left: 30%;
   width: 40%;
+}
+
+#regist-win {
+  background-color: mintcream;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28vw;
+  min-width: 360px;
+  min-height: 360px;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+#regist-back {
+  position: absolute;
+  display: inline-block;
+  width: min-content;
+  margin: 5px;
+  border: none;
+  font-size: 30px;
+  background-color: mintcream;
+  transform: rotate(45deg);
+  cursor: pointer;
+  right: 12px;
+  top: 10px;
+}
+
+#title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1vw;
+}
+
+#regist-form {
+  margin-top: 10%;
+  text-align: center;
+  width: 100%;
+  font-size: larger;
+}
+
+#btn-regist {
+  display: block;
+  width: 60%;
+  margin: 5% 20% 15% 20%;
+  background-color: royalblue;
+  border: none;
+  color: mintcream;
+  font-size: large;
+  border-radius: 10px;
+}
+
+#msg-bar {
+  color: red;
+}
+
+#end-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+}
+
+#score-table {
+  margin-top: 5%;
+}
+
+#score-board {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 1);
+  top: 10%;
+  right: 15%;
+  border: 3px solid #555555;
+  border-radius: 15px;
+  padding: 30px 5px 0px 5px;
+}
+
+#table-board {
+  position: absolute;
+  width: 90%;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 1);
+  top: 20%;
+  right: 5%;
+  border: 3px solid #555555;
+  overflow: scroll;
+  padding: 10px;
 }
