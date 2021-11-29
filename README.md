@@ -2,6 +2,8 @@
 
 2D card game
 
+![image](https://user-images.githubusercontent.com/56790327/143858506-25f60802-2681-423e-a44d-302d90350f1f.png)
+
 ## Database
 
 MongoDB running at localhost:27017.
